@@ -1,0 +1,16 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/ecommerce
+        username: 'postgres'
+        password: 'Giovix090901'
+        driver-class-name: org.postgresql.Driver
+    profiles:
+        active: default
+    jpa:
+        hibernate:
+            ddl-auto: update 
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+    port: 8081
+
