@@ -1,4 +1,4 @@
-package pswproject.pswproject.security;
+/*package pswproject.pswproject.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -45,4 +45,4 @@ public class BeansConfig {
 
     }
 
-}
+}*/

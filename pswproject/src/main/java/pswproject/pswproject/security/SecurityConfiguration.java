@@ -1,13 +1,12 @@
 package pswproject.pswproject.security;
 
-import java.util.HashMap;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -66,7 +65,9 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{ //serie di filtri che si applicano alle richieste in arrivo al be ; i filtri non sono altro che delle regole che le richieste devono rispettare:
-        return http.csrf(csrf -> csrf.disable())
+        return http
+            .csrf(csrf -> csrf.disable())
+            .cors(Customizer.withDefaults())
             .authorizeHttpRequests(authorizeRequests -> {
                 authorizeRequests.requestMatchers( "/auth/**").permitAll();
 
