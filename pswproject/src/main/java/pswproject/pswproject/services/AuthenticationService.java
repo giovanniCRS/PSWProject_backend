@@ -70,9 +70,10 @@ public class AuthenticationService {
 
         //salviamo il nuovo Utente:
         Utente u = utenteRepository.save(nuovoUtente);
+        /* 
         Authentication auth =null ;
         //Autenticazione:
-        /* 
+        
         try {
              auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password)) ;
             
@@ -83,7 +84,7 @@ public class AuthenticationService {
         //generiamo un nuovo Token:
         String token = tokenService.generateJwt(auth);*/
         //restituiamo una risposta adatta al fe:
-        return utenteRepository.save(nuovoUtente);
+        return utenteRepository.save(u);
     }
 
     @Transactional(readOnly = false)
