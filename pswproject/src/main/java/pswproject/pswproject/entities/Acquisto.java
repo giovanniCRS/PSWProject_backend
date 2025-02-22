@@ -30,7 +30,7 @@ public class Acquisto implements Serializable{ //tutti gli oggetti inviati su re
     @JoinColumn(name = "prodottoVenduto")
     private Prodotto prodottoVenduto;
 
-    private int prezzovendita;
+    private int prezzovendita; // congelato
 
     @Basic
     @Column(name = "quantita", nullable = false)

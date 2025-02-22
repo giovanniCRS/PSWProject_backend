@@ -54,7 +54,7 @@ public class AcquistoService {
 
     @Transactional(readOnly = false)
     @SuppressWarnings({"all"})
-    public Acquisto createAcquisto(int carrelloAssociato, String EAN, int quantita) //chiede alla repository di aggiungere un Acquisto, altrimenti non valido.
+    public Acquisto createAcquisto(int carrelloAssociato, String EAN, int quantita, int prezzovendita) //chiede alla repository di aggiungere un Acquisto, altrimenti non valido.
     {
         //controlliamo se il ProdottoAssociato esiste e se la quantita richiesta di acquisto è positiva:
         if(!prodottoRepository.existsByEAN(EAN))
@@ -72,6 +72,9 @@ public class AcquistoService {
 
         //creiamo nuovo oggetto Acquisto:
         Acquisto nuovoAcquisto = new Acquisto();
+
+        // congela il prezzo di vendita al momento dell'acquisto
+        nuovoAcquisto.setPrezzovendita(prezzovendita); 
         
         //aggiorniamo il Prodotto con la nuova quantità:
         p.setQuantitaInMagazzino(nuovaQuantita);

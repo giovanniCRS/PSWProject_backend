@@ -79,7 +79,7 @@ public class CarrelloService {
         //creiamo gli Acquisti chiedendo di farlo ad acquistoService:
         List<Acquisto> acquisti = new ArrayList<>();
         for( Acquisto a : carrello.getAcquisti() )
-            acquisti.add(acquistoService.createAcquisto(nuovCarrello.getIdCarrello(), a.getProdottoVenduto().getEAN(), a.getQuantita()));
+            acquisti.add(acquistoService.createAcquisto(nuovCarrello.getIdCarrello(), a.getProdottoVenduto().getEAN(), a.getQuantita(), a.getPrezzovendita()));
         nuovCarrello.setAcquisti(acquisti);
 
         return nuovCarrello;

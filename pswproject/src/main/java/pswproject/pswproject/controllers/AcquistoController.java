@@ -63,10 +63,10 @@ public class AcquistoController {
     @PostMapping("/{carrelloAssociato}/{EANProd}/{quantita}") //specifichiamo un percorso Path specifico per richieste di tipo POST.
     @SuppressWarnings({"unchecked", "rawtypes"})
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity createAcquisto(@PathVariable int carrelloAssociato, @PathVariable String EANProd, @PathVariable int quantita) //resituisce una riposta HTTP che può essere corretta (Acquisto creato) oppure no.
+    public ResponseEntity createAcquisto(@PathVariable int carrelloAssociato, @PathVariable String EANProd, @PathVariable int quantita, @PathVariable int prezzovendita) //resituisce una riposta HTTP che può essere corretta (Acquisto creato) oppure no.
     {
         try{
-            Acquisto risAcquisto = acquistoService.createAcquisto(carrelloAssociato, EANProd, quantita);
+            Acquisto risAcquisto = acquistoService.createAcquisto(carrelloAssociato, EANProd, quantita, prezzovendita);
             return new ResponseEntity(risAcquisto, HttpStatus.OK);
         }catch(EccezioneCarrelloNonEsistente e){
             return new ResponseEntity("Carrello non esistente!", HttpStatus.BAD_REQUEST);
