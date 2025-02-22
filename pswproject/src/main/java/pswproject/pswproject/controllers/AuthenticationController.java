@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.core.token.TokenService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,9 +41,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager; //si occupa dell'autenticazione dell'Utente.
 
     @Autowired
-    private TokenService tokenService;   
-    @Autowired
-    private PasswordEncoder passwordEncoder ;
+    private TokenService tokenService; 
 
     //entrambi gli endpoint sono in POST perché passiamo i dati di login / registrazione.
 
@@ -63,7 +61,6 @@ public class AuthenticationController {
  
         try{
             Utente ris = authenticationService.registraUtente(body.getNome(), body.getCognome(), body.getEmail(), body.getPassword());
-            boolean match = passwordEncoder.matches(body.getPassword(), ris.getPassword());//in chiaro, criptata
             String t= tokenService.generateJwt(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(ris.getEmail(), body.getPassword())));
             return new ResponseEntity<>(t, HttpStatus.OK);
         }catch(EccezioneEmailGiaUtilizzata e){
