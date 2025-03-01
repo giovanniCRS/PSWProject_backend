@@ -62,7 +62,8 @@ public class AuthenticationController {
         try{
             Utente ris = authenticationService.registraUtente(body.getNome(), body.getCognome(), body.getEmail(), body.getPassword());
             String t= tokenService.generateJwt(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(ris.getEmail(), body.getPassword())));
-            return new ResponseEntity<>(t, HttpStatus.OK);
+            AuthResponseDto responseDto = new AuthResponseDto(ris, t);
+            return new ResponseEntity<>(responseDto, HttpStatus.OK);
         }catch(EccezioneEmailGiaUtilizzata e){
             return new ResponseEntity<>("L'utente è già registrato", HttpStatus.BAD_REQUEST);
         }catch(EccezioneOperazioneNonValida e){
