@@ -2,6 +2,9 @@ package pswproject.pswproject.entities;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,4 +39,10 @@ public class Carrello implements Serializable{ //tutti gli oggetti inviati su re
 
     @Column(name = "metodoDiPagamento", nullable = true, length = 50)
     private String metodoDiPagamento;
+
+    //Hibernate
+    @Version //notazione che rende noto al database se dal momento in cui ha prelevato la risorsa per modificarla un'altra transazione è avvenuta prima che potesse salvarla, in quel caso si annulla quella arrivata dopo.
+    @Column(name = "versione")
+    @JsonIgnore
+    private Long versione;
 }

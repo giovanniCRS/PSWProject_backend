@@ -35,4 +35,10 @@ public class Acquisto implements Serializable{ //tutti gli oggetti inviati su re
     @Basic
     @Column(name = "quantita", nullable = false)
     private int quantita; //va a sottrarre quella presente in magazzino (inventario), nel caso di acquisto annullato dall'Admin, essa si torna a sommare con quella in magazzino.
+
+    //Hibernate
+    @Version //notazione che rende noto al database se dal momento in cui ha prelevato la risorsa per modificarla un'altra transazione è avvenuta prima che potesse salvarla, in quel caso si annulla quella arrivata dopo.
+    @Column(name = "versione")
+    @JsonIgnore
+    private Long versione;
 }

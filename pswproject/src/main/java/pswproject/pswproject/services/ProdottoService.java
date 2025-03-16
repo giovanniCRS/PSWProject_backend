@@ -91,7 +91,7 @@ public class ProdottoService {
         Prodotto nuovoProdotto = new Prodotto();
         nuovoProdotto.setNome(prodotto.getNome()); nuovoProdotto.setPrezzo(prodotto.getPrezzo()); nuovoProdotto.setMarca(prodotto.getMarca());
         nuovoProdotto.setQuantitaInMagazzino(prodotto.getQuantitaInMagazzino()); nuovoProdotto.setEAN(prodotto.getEAN());
-        nuovoProdotto.setVersione(prodotto.getVersione()); nuovoProdotto.setCategoria(categoriaRepository.findByNome(prodotto.getCategoria().getNome()).get());
+        nuovoProdotto.setCategoria(categoriaRepository.findByNome(prodotto.getCategoria().getNome()).get());
 
         //salviamo il nuovo Prodotto:
         return prodottoRepository.save(nuovoProdotto);
@@ -113,7 +113,7 @@ public class ProdottoService {
         //prendiamo il Prodotto dalla repository:
         Prodotto daAggiornare = prodottoRepository.findByEAN(ean).get();
         daAggiornare.setNome(prodotto.getNome()); daAggiornare.setPrezzo(prodotto.getPrezzo()); daAggiornare.setMarca(prodotto.getMarca());
-        daAggiornare.setQuantitaInMagazzino(prodotto.getQuantitaInMagazzino()); daAggiornare.setVersione(prodotto.getVersione());
+        daAggiornare.setQuantitaInMagazzino(prodotto.getQuantitaInMagazzino()); 
         daAggiornare.setCategoria(categoriaRepository.findByNome(prodotto.getCategoria().getNome()).get());
 
         //salviamo il nuovo Prodotto aggiornato:

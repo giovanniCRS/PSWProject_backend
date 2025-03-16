@@ -51,8 +51,9 @@ public class Prodotto implements Serializable{ //tutti gli oggetti inviati su re
     @JoinColumn(name = "categoria") //rappresenta la relazione molti a 1 : a molti prodotti corrisponde 1 categoria (1 prodotto ha una sola Categoria).
     private Categoria categoria;
 
+    //Hibernate
     @Version //notazione che rende noto al database se dal momento in cui ha prelevato la risorsa per modificarla un'altra transazione è avvenuta prima che potesse salvarla, in quel caso si annulla quella arrivata dopo.
-    @Column(name = "versione", nullable = false)
+    @Column(name = "versione")
     @JsonIgnore
-    private long versione;
+    private Long versione;
 }
